@@ -1,0 +1,22 @@
+---
+title: "Blog posts"
+comments: False
+format:
+  html:
+    page-layout: full
+listing:
+  - id: blog
+    categories: true
+    feed: true
+    contents: blog/posts
+    type: grid
+    fields: [image, date, title, author, description, categories, reading-time]
+    image-placeholder: pexels-photo-205001.jpeg
+    sort: 
+      - "date desc"
+      - "title asc"
+---
+
+
+:::{#blog}
+:::

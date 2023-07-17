@@ -1,0 +1,74 @@
+/*-- scss:defaults --*/
+$bg: "white";
+$fg: "black";
+$primary: #6366f1;
+$link-color: #184fa9;
+$input-focus-border-color: #005f7e;
+$input-btn-focus-box-shadow: #005f7e;
+$font-family-base: "frutiger-light,sans-serif";
+$font-family-code: "Fira Mono";
+$dropdown-link-hover-bg: #e0e0fc;
+$dropdown-link-active-bg: #e0e0fc;
+
+/*-- scss:rules --*/
+.nav-item {
+  text-transform: uppercase;
+}
+
+@font-face {
+  font-family: "frutiger-light";
+  src: url("https://cynkra.com/user/fonts/1449009/e5acedaa-f4c6-4128-8b5a-2f3f8324f09b.eot"); /* IE9 Compat Modes */
+  src: local("Frutiger Light"), local("frutiger-light"),
+  url("https://cynkra.com/user/fonts/1449009/e5acedaa-f4c6-4128-8b5a-2f3f8324f09b.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("https://cynkra.com/user/fonts/1449009/b3ca2df2-7bee-4fc0-84cb-b029b99c3b61.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("https://cynkra.com/user/fonts/1449009/554d0bc9-df00-45eb-993e-f62841c80ab1.woff")
+      format("woff"),
+    /* Pretty Modern Browsers */
+      url("https://cynkra.com/user/fonts/1449009/3512931d-90c5-4aa4-b0dc-3a3630c65f37.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("https://cynkra.com/user/fonts/1449009/f8b7e418-9dc4-4040-ac46-c50501eac7b5.svg#f8b7e418-9dc4-4040-ac46-c50501eac7b5")
+      format("svg"); /* Legacy iOS */
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
+}
+
+/* navbar */
+.navbar {
+  box-shadow: rgba(19, 16, 34, 0.06) 0px 4.4px 12px -1px, rgba(19, 16, 34, 0.03) 0px 2px 6.4px -1px;
+  background-color: white !important;
+}
+
+.navbar-light .navbar-nav .active > .nav-link {
+  color: #3134ED;
+  background-color: #f2f2f2;
+}
+
+/* copy-paste button ---------------------------------------------------------*/
+.btn.btn-primary.btn-copy-ex {
+	color: white;
+}
+
+/* cynkra logo classes  ----------------------------------------------------- */
+
+#cynkra-logo-footer {
+  height: 20px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}
+
+#cynkra-logo-nav {
+  height: 25px;
+  padding-right: 20px;
+  padding-bottom: 2px;
+}
+
+/* Navbar */
+li.active a.nav-link {
+  color: #005f7e !important;
+}

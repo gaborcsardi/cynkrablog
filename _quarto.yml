@@ -1,0 +1,44 @@
+project:
+  type: website
+
+website:
+  site-url: https://cynkra.com/blog
+  reader-mode: true
+  title: "cynkra blog"
+  description: "By the cynkra team"
+  navbar:
+    logo: https://cynkra.com/assets/img/logo_small.svg
+    title: false
+    right:
+      - text: Consulting
+        menu:
+          - text: R Consulting
+            url:  https://cynkra.com/consulting/
+          - text: Workshops
+            url:  https://cynkra.com/workshops/
+          - text: R Markdown templates
+            url:  https://cynkra.com/rmarkdown/
+      - text: Posit
+        menu:
+          - text: Managed Server Solutions
+            url:  https://cynkra.com/posit/managed/
+          - text: Posit licenses
+            url:  https://cynkra.com/posit/
+      - text: open source
+        href: https://cynkra.com/opensource
+      - text: about
+        href: https://cynkra.com/about
+      - text: blog
+        href: https://cynkra.com/blog
+      - icon: rss
+        href: blog/index.xml
+format:
+  html:
+    theme:
+      light:
+        - cosmo
+        - custom.scss
+      dark: darkly
+
+
+
