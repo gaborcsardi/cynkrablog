@@ -9,7 +9,7 @@ register_post <- function(path) {
   parent_folder <- file.path("blog", "posts", folder_name)
 
   fs::dir_create(parent_folder)
-  fs::dir_copy(path, file.path(parent_folder, "index.qmd"))
+  fs::file_copy(path, file.path(parent_folder, "index.qmd"))
 
   images_folder <- file.path("../cynkraweb/www/blog", folder_name)
   if (fs::dir_exists(images_folder)) {
