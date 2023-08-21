@@ -22,3 +22,4 @@ register_post <- function(path) {
 }
 
 purrr::walk(posts, register_post)
+# install.packages("seasonal") because of a chunk in 2022-04-19-seasonal-1.9
