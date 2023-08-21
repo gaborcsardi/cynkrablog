@@ -35,6 +35,7 @@ website:
         href: blog/index.xml
 format:
   html:
+    code-link: true
     theme:
       light:
         - cosmo
