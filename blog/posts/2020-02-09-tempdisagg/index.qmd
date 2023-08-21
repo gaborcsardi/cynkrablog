@@ -1,4 +1,5 @@
 ---
+date: 2020-02-09
 layout: post
 image: banner.jpg
 og_image: og_image.jpg
