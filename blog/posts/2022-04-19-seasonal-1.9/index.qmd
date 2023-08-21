@@ -1,0 +1,85 @@
+---
+layout: post
+image: banner.jpg
+og_image: og_image.jpg
+author: Christoph Sax
+title: 'seasonal 1.9: Accessing composite output'
+tags:
+- r
+- time-series
+- seasonal adjustment
+badges:
+- label: CRAN
+  bg: bg-warning
+---
+
+seasonal is an easy-to-use and full-featured R interface to X-13ARIMA-SEATS,
+the seasonal adjustment software developed by the United States Census
+Bureau.
+The latest CRAN version of seasonal fixes several bugs and makes it easier to access output from multiple objects. See [here](https://github.com/christophsax/seasonal/blob/main/NEWS.md#190) for a complete list of changes.
+
+
+<figure>
+<img alt="Illustration" src="banner.jpg" style=" width: 100%; height: auto">
+<figcaption>
+  Photo by Aaron Burden
+</figcaption>
+</figure>
+
+<br>
+
+`seas()` is the core function of the [seasonal](https://cran.r-project.org/package=seasonal) package. By default, `seas()` calls
+the automatic procedures of X-13ARIMA-SEATS to perform a seasonal adjustment
+that works well in most circumstances:
+
+```r
+library(seasonal)
+seas(AirPassengers)
+```
+
+For a more detailed introduction, read our [article in the *Journal of
+Statistical Software*](https://doi.org/10.18637/jss.v087.i11).
+
+### Multiple series adjustment
+
+The previous version has introduced [the adjustment of multiple series](https://www.cynkra.com/blog/2021-03-09-seasonal-1.8/) in a single call to `seas()`. This has removed the need for loops or `lapply()` in such cases and finally brought the *composite* spec to seasonal.
+
+As [Brian Monsell](https://github.com/christophsax/seasonal/issues/278) pointed out, this was not enough to access the output from the composite spec. The latest  [CRAN version](https://cran.r-project.org/package=seasonal) fixes this problem.
+
+Multiple adjustments can be performed by supplying multiple time series as an `"mts"` object:
+
+```{r}
+library(seasonal)
+m0 <- seas(cbind(fdeaths, mdeaths), x11 = "")
+final(m0)
+```
+
+This performs two seasonal adjustments, one for `fdeaths` and one for `mdeaths`. The [vignette on multiple adjustments](https://cran.r-project.org/web/packages/seasonal/vignettes/multiple.html) describes how to specify options for individual series.
+
+### Accessing composite output
+
+The `composite` argument is a list with an X-13 specification applied to the aggregated series:
+
+```{r}
+m1 <- seas(
+  cbind(mdeaths, fdeaths),
+  composite = list(),
+  series.comptype = "add"
+)
+```
+
+With version 1.9 can now use `out()` to access the output of the composite spec:
+
+```r
+out(m1)
+```
+
+We can also use `series()`, e.g., to access the final, indirectly adjusted series via the `composite` spec (see `?series` for all available series):
+
+
+```{r}
+series(m1, "composite.indseasadj")
+```
+
+
+

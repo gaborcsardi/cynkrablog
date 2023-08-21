@@ -1,0 +1,124 @@
+---
+layout: post
+image: banner.jpg
+og_image: og_image.jpg
+author: Christoph Sax
+title: 'Seasonal Adjustment of Multiple Series'
+tags:
+- r
+- time-series
+---
+
+seasonal is an easy-to-use and full-featured R-interface to X-13ARIMA-SEATS,
+the seasonal adjustment software developed by the United States Census
+Bureau.
+The latest CRAN version of seasonal makes it much easier to adjust multiple time series.
+
+
+<figure>
+<img alt="Illustration" src="banner.jpg" style=" width: 100%; height: auto">
+<figcaption>
+  Photo by Meriç Dağlı
+</figcaption>
+</figure>
+
+<br>
+
+[seasonal](http://www.seasonal.website) depends on the [x13binary](https://CRAN.R-project.org/package=x13binary) package to access pre-built
+binaries of X-13ARIMA-SEATS on all platforms and does not require any manual
+installation. To install both packages:
+
+```r
+install.packages("seasonal")
+```
+
+`seas` is the core function of the [seasonal](https://cran.r-project.org/package=seasonal) package. By default, `seas` calls
+the automatic procedures of X-13ARIMA-SEATS to perform a seasonal adjustment
+that works well in most circumstances:
+
+```r
+seas(AirPassengers)
+```
+
+For a more detailed introduction, read our [article in the *Journal of
+Statistical Software*](https://doi.org/10.18637/jss.v087.i11).
+
+### Multiple Series Adjusmtent
+
+In the latest [CRAN version 1.8](https://cran.r-project.org/package=seasonal), it is now possible to seasonally adjust multiple series in a single call to `seas()`.
+This is done by using the built-in batch mode of X-13. It removes the need for loops or `lapply()` in such cases and finally brings one missing feature of X-13 to seasonal -- the *composite* spec.
+
+Multiple adjustments can be performed by supplying multiple time series as an
+`"mts"` object:
+
+```{r}
+library(seasonal)
+m <- seas(cbind(fdeaths, mdeaths), x11 = "")
+final(m)
+```
+
+This will perform two seasonal adjustments, one for `fdeaths` and one for
+`mdeaths`. X-13 spec-argument combinations can be applied in the usual way, such
+as `x11 = ""`. Note that if entered that way, they will apply to both series. The [vignette on multiple adjustments](https://cran.r-project.org/web/packages/seasonal/vignettes/multiple.html) describes how to specify options for individual series.
+
+
+### Backend
+
+X-13 ships with a batch mode that allows multiple adjustments in a single call
+to X-13. This is now the default in seasonal (`multimode = "x13"`).
+Alternatively, X-13 can be called for each series (`multimode = "R"`).
+The results should be usually the same, but switching to
+`multimode = "R"` may be useful for debugging:
+
+```{r}
+seas(cbind(fdeaths, mdeaths), multimode = "x13")
+seas(cbind(fdeaths, mdeaths), multimode = "R")
+```
+
+In general, `multimode = "x13"` is faster. The following comparison on a MacBook Pro shows
+a modest speed gain, but bigger differences have been observed on other systems:
+
+```r
+many <- rep(list(fdeaths), 100)
+system.time(seas(many, multimode = "x13"))
+#   user  system elapsed
+#  9.415   0.653  10.079
+system.time(seas(many, multimode = "R"))
+#   user  system elapsed
+# 11.130   1.039  12.324
+```
+
+### composite spec
+
+Support for the X-13 batch mode makes it finally possible to use the *composite*
+spec -- the one feature of X-13 that was missing in seasonal. Sometimes, one has to decide whether
+seasonal adjustment should be performed on a granular level or on an aggregated
+level. The *composite* spec helps you to analyze the problem and to compare the
+direct and the indirect adjustments.
+
+The `composite` argument is a list with an X-13 specification that is applied on
+the aggregated series. Specification works identically for other series in
+`seas()`, including the application of the defaults. If you provide an empty
+list, the usual defaults of `seas()` are used.
+A minimal composite call looks like this:
+
+```{r}
+seas(
+  cbind(mdeaths, fdeaths),
+  composite = list(),
+  series.comptype = "add"
+)
+```
+
+You can verify that the composite refers to the total of `mdeaths` and `fdeaths` by running:
+
+```{r}
+seas(ldeaths)
+```
+
+where `ldeaths` is the sum of `mdeaths` and `fdeaths`.
+
+
+### Acknowledgement
+
+Many thanks to [Severin Thöni](https://mtec.ethz.ch/people/person-detail.MTU3MzEx.TGlzdC8yODk2LC0yMDgyMjgwMDQ4.html) and [Matthias Bannert](https://kof.ethz.ch/das-institut/personen/person-detail.MTYxMjA1.TGlzdC81NzgsODQ4OTAwOTg=.html), for demonstrating the benefits of the X-13 batch mode. Also to the [ETH KOF](https://kof.ethz.ch), for partially funding this development.
