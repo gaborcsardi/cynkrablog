@@ -16,6 +16,12 @@ $dropdown-link-active-bg: #e0e0fc;
   text-transform: uppercase;
 }
 
+// header font
+h1, h2, h3, h4, h5, h6 {
+  font-family: "frutiger-thin,sans-serif";
+  font-weight: 300;
+}
+
 // rounded post cards
 #listing-blog .quarto-grid-item.card {
   border-radius: 30px;
