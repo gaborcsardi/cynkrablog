@@ -7,6 +7,7 @@ website:
   reader-mode: true
   title: "cynkra blog"
   description: "By the cynkra team"
+  body-footer: "© All rights reserved. Copyright cynkra GmbH."
   navbar:
     logo: https://cynkra.com/assets/img/logo_small.svg
     title: false
