@@ -7,7 +7,9 @@ website:
   reader-mode: true
   title: "cynkra blog"
   description: "By the cynkra team"
-  body-footer: "© All rights reserved. Copyright cynkra GmbH."
+  page-footer:
+    left: "© All rights reserved. Copyright cynkra GmbH."
+    right: Blog created with [Quarto](https://quarto.org/).
   navbar:
     logo: https://cynkra.com/assets/img/logo_small.svg
     title: false
