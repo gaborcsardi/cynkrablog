@@ -1,0 +1,13 @@
+Package: cynkrablog
+Title: Source of the cynkrablog
+Version: 1.0.0
+Authors@R: c(
+    person("Maëlle", "Salmon", , "maelle.salmon@yahoo.se", role = "ctb",
+           comment = c(ORCID = "0000-0002-2815-0399"))
+  )
+Description: Source of the cynkrablog
+Encoding: UTF-8
+Imports: 
+    rmarkdown,
+    seasonal,
+    tsbox

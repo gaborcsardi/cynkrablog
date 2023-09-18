@@ -20,6 +20,7 @@ jobs:
           # version: SPECIFIC-QUARTO-VERSION-HERE
 
       # add software dependencies here
+      - uses: r-lib/actions/setup-r-dependencies@v2
 
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
