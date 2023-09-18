@@ -9,3 +9,5 @@ Description: Source of the cynkrablog
 Encoding: UTF-8
 Imports: 
     seasonal
+Remotes:
+    x13org/x13binary
