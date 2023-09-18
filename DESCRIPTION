@@ -8,6 +8,4 @@ Authors@R: c(
 Description: Source of the cynkrablog
 Encoding: UTF-8
 Imports: 
-    rmarkdown,
-    seasonal,
-    tsbox
+    seasonal
