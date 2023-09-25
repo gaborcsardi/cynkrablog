@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0.5rem 0.5rem 0px 0px;
 }
 
-\\ body font
+// body font
 @font-face {
     font-family: "frutiger-light";
     src: url("https://cynkra.com/assets/css/fonts/6135829/b05d44ef-6a78-4aa4-9388-3f0e05252a48.woff2") format("woff2");
@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5, h6 {
     font-display: fallback
 }
 
-\\ header font
+// header font
 @font-face {
     font-family: "frutiger-thin";
     src: url("https://cynkra.com/assets/css/fonts/1449009/b3ca2df2-7bee-4fc0-84cb-b029b99c3b61.woff2") format("woff2");
