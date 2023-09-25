@@ -43,10 +43,8 @@ format:
   html:
     code-link: true
     theme:
-      light:
-        - cosmo
-        - custom.scss
-      dark: darkly
+      light: [cosmo, light.scss, custom.scss]
+      dark: [cosmo, dark.scss, custom.scss]
 
 
 
