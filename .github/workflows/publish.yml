@@ -1,6 +1,8 @@
 on:
   push:
     branches: main
+  pull_request:
+    branches: main
 
 name: Render and Publish
 
@@ -20,7 +22,7 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
 
       - name: Update cynkra org S3 bucket
-        if: false
+        if: contains(env.isExtPR, 'false')
         timeout-minutes: 7
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_CYNKRA_ORG }}
