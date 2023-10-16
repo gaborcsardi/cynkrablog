@@ -13,17 +13,23 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          # To install LaTeX to build PDF book
-          tinytex: true
-          # uncomment below and fill to pin a version
-          # version: SPECIFIC-QUARTO-VERSION-HERE
 
       # add software dependencies here
 
-      - name: Publish to GitHub Pages (and render)
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+
+      - name: Update cynkra org S3 bucket
+        if: false
+        timeout-minutes: 7
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_CYNKRA_ORG }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_CYNKRA_ORG }}
+          AWS_DEFAULT_REGION: eu-central-1
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+          aws configure list
+          # S3
+          aws s3 sync docs s3://cynkraweb-site
