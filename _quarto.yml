@@ -42,6 +42,9 @@ website:
 format:
   html:
     code-link: true
+    highlight-style:
+      light: arrow
+      dark: arrow-dark
     theme:
       light: [cosmo, light.scss, custom.scss]
       dark: [cosmo, dark.scss, custom.scss]
