@@ -11,3 +11,5 @@ Imports:
   rmarkdown,
   downlit, 
   xml2
+Remotes:
+  s-u/base64enc
