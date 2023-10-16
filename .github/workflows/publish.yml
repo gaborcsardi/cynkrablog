@@ -16,7 +16,7 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      # add software dependencies here
+      - uses: r-lib/actions/setup-r-dependencies@v2
 
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
