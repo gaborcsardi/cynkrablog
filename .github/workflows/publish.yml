@@ -20,6 +20,14 @@ jobs:
 
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
+      - uses: actions/setup-node@v3
+        timeout-minutes: 2
+        with:
+          node-version: 16
+
+      - name: html5 validate
+        timeout-minutes: 5
+        run: npx html-validate docs
 
       - name: Update cynkra org S3 bucket
         if: contains(env.isExtPR, 'false')
