@@ -18,6 +18,13 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Debug R
+        run: |
+          .libPaths()
+          install.packages("dotenv")
+          install.packages("brio")
+        shell: Rscript {0}
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
